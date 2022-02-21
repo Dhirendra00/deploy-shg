@@ -28,14 +28,14 @@ export const Button: React.FC<IButtonProps> = ({ children }) => {
 
   return (
     <button
-      className="flex justify-between items-center w-full px-4 py-2 text-sm font-medium text-left text-purple-900 bg-purple-100 rounded-lg hover:bg-purple-200 focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
+      className="flex justify-between items-center w-full px-4 py-2 text-sm font-medium text-left text-white hover:bg-emerald-700 secondaryBgColor rounded-lg  focus:outline-none focus-visible:ring   focus-visible:ring-opacity-75"
       onClick={onClickFn}
     >
       {children}
       <ChevronUpIcon
         className={`${
           isOpen ? "transform rotate-180" : ""
-        } w-5 h-10 text-purple-500`}
+        } w-5 h-10 text-white`}
       />
     </button>
   );

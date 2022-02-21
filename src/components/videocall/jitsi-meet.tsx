@@ -76,6 +76,18 @@ export const JitsiMeet: FunctionComponent<JitsiProps> = ({
   //   () => initialize(),
   //   () => destroy()
   // );
+  useEffect(() => {
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
+  const handleBeforeUnload = (e) => {
+    e.preventDefault();
+    const message = "Are you sure you want to leave? Your Videocall will end.";
+    e.returnValue = message;
+    return message;
+  };
   return <div id="jitsi-root" style={{ height: 720, width: "100%" }} />;
 };

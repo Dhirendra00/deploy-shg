@@ -1,5 +1,5 @@
 import Image from "next/image";
-import DoctorPatientDetailTab from "@/modules/DoctorPatientDetailTab";
+import HfPatientDetailTab from "@/modules/HfPatientDetailTab";
 import { Button, GrayButton } from "@/components/Button";
 import withAuth from "@/shared/withAuth";
 
@@ -42,7 +42,7 @@ function Videocall() {
                   <ArrowLeftOutlined />
                 </div>
               </Link>
-              <DoctorPatientDetailTab />
+              <HfPatientDetailTab />
             </ul>
           </nav>
         </div>
@@ -93,9 +93,70 @@ function Videocall() {
                       </div>
                       <hr className="mt-3 mb-3" />
                       <h1 className="text-2xl font-bold underline decoration-sky-500">
-                        Our Available Doctor For Today&apos;s!
+                        Our Available Doctors For Today&apos;s!
                       </h1>
                       <div className="grid grid-cols-3 gap-4 mt-4">
+                        <div className="h-56 shadow-E500 bg-white rounded-sm p-4 mr-5">
+                          <div className="flex items-center justify-between w-full">
+                            <div className="flex items-center space-x-4">
+                              <div className="w-24 h-24 relative rounded-full overflow-hidden shadow-E400">
+                                <Image
+                                  src="/avatar.png"
+                                  alt="Avatar"
+                                  layout="fill"
+                                />
+                              </div>
+                              <div className="flex-col">
+                                <div className="capitalize text-3xl font-semibold text-gray-700">
+                                  Dr. Manoj
+                                </div>
+                                <div className="capitalize text-xl font-medium text-gray-500">
+                                  OPD Service
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="primaryBgColor w-3/12 mt-8 text-white py-3 px-10 text-lg rounded-sm">
+                            <input
+                              type="checkbox"
+                              value="Manoj"
+                              id="Manoj"
+                              // checked={displayName === "Dhirendra"}
+                              onChange={(e) => setRoomName(e.target.value)}
+                            />
+                          </div>
+                        </div>
+
+                        <div className="h-56 shadow-E500 bg-white rounded-sm p-4 mr-5">
+                          <div className="flex items-center justify-between w-full">
+                            <div className="flex items-center space-x-4">
+                              <div className="w-24 h-24 relative rounded-full overflow-hidden shadow-E400">
+                                <Image
+                                  src="/avatar.png"
+                                  alt="Avatar"
+                                  layout="fill"
+                                />
+                              </div>
+                              <div className="flex-col">
+                                <div className="capitalize text-3xl font-semibold text-gray-700">
+                                  Dr. Santosh
+                                </div>
+                                <div className="capitalize text-xl font-medium text-gray-500">
+                                  OPD Service
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="primaryBgColor w-3/12 mt-8 text-white py-3 px-10 text-lg rounded-sm">
+                            <input
+                              type="checkbox"
+                              value="Santosh"
+                              id="Santosh"
+                              // checked={displayName === "Dhirendra"}
+                              onChange={(e) => setRoomName(e.target.value)}
+                            />
+                          </div>
+                        </div>
                         <div className="h-56 shadow-E500 bg-white rounded-sm p-4 mr-5">
                           <div className="flex items-center justify-between w-full">
                             <div className="flex items-center space-x-4">
@@ -115,18 +176,18 @@ function Videocall() {
                                 </div>
                               </div>
                             </div>
-                            <div className="bg-blue-800 text-white py-3 px-10 text-lg rounded-sm">
-                              <input
-                                type="checkbox"
-                                value="Dhirendra"
-                                id="Dhirendra"
-                                // checked={displayName === "Dhirendra"}
-                                onChange={(e) => setRoomName(e.target.value)}
-                              />
-                            </div>
+                          </div>
+                          <div className="primaryBgColor w-3/12 mt-8 text-white py-3 px-10 text-lg rounded-sm">
+                            <input
+                              type="checkbox"
+                              value="Dhirendra"
+                              id="Dhirendra"
+                              // checked={displayName === "Dhirendra"}
+                              onChange={(e) => setRoomName(e.target.value)}
+                            />
                           </div>
                         </div>
-                        <div className="h-56 shadow-E500 bg-white rounded-sm p-4 ml-5">
+                        <div className="h-56 shadow-E500 bg-white rounded-sm p-4 mr-5">
                           <div className="flex items-center justify-between w-full">
                             <div className="flex items-center space-x-4">
                               <div className="w-24 h-24 relative rounded-full overflow-hidden shadow-E400">
@@ -138,51 +199,22 @@ function Videocall() {
                               </div>
                               <div className="flex-col">
                                 <div className="capitalize text-3xl font-semibold text-gray-700">
-                                  Dr. Sagar Karki
+                                  Dr. Sagar
                                 </div>
                                 <div className="capitalize text-xl font-medium text-gray-500">
                                   OPD Service
                                 </div>
                               </div>
-                            </div>
-                            <div className="bg-blue-800 text-white py-3 px-10 text-lg rounded-sm">
-                              <input
-                                type="checkbox"
-                                value="Sagar"
-                                id="santosh"
-                                // checked={displayName === 'Santosh'}
-                                onChange={(e) => setRoomName(e.target.value)}
-                              />
                             </div>
                           </div>
-                        </div>
-                        <div className="h-56 shadow-E500 bg-white rounded-sm p-4 ml-5">
-                          <div className="flex items-center justify-between w-full">
-                            <div className="flex items-center space-x-4">
-                              <div className="w-24 h-24 relative rounded-full overflow-hidden shadow-E400">
-                                <Image
-                                  src="/avatar.png"
-                                  alt="Avatar"
-                                  layout="fill"
-                                />
-                              </div>
-                              <div className="flex-col">
-                                <div className="capitalize text-3xl font-semibold text-gray-700">
-                                  Dr. Santosh
-                                </div>
-                                <div className="capitalize text-xl font-medium text-gray-500">
-                                  OPD Service
-                                </div>
-                              </div>
-                            </div>
-                            <div className="bg-blue-800 text-white py-3 px-10 text-lg rounded-sm">
-                              <input
-                                type="checkbox"
-                                value="Santosh"
-                                id="santosh"
-                                onChange={(e) => setRoomName(e.target.value)}
-                              />
-                            </div>
+                          <div className="primaryBgColor w-3/12 mt-8 text-white py-3 px-10 text-lg rounded-sm">
+                            <input
+                              type="checkbox"
+                              value="Sagar"
+                              id="Sagar"
+                              // checked={displayName === "Dhirendra"}
+                              onChange={(e) => setRoomName(e.target.value)}
+                            />
                           </div>
                         </div>
                       </div>

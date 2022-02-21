@@ -28,8 +28,15 @@
   flex-grow: 1;
 }
 
+.primaryTextColor {
+  color: #2b91bf;
+}
+.primaryBgColor {
+  background-color: #2b91bf;
+}
+
 .title a {
-  color: #0070f3;
+  color: #2b91bf;
   text-decoration: none;
 }
 
@@ -88,8 +95,8 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+  color: #2b91bf;
+  border-color: #2b91bf;
 }
 
 .card h2 {

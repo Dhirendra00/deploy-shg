@@ -8,9 +8,9 @@ import { OldPatientTab } from "../../../modules/OldPatientTab";
 import { NewPatientTab } from "../../../modules/NewPatientTab";
 
 const OPDService = () => {
-  const [selectedTab, setSelectedTab] = useState("old");
+  const [selectedTab, setSelectedTab] = useState("new");
 
-  const tabs = ["old", "new"];
+  const tabs = ["new", "old"];
   return (
     <MainLayout>
       <div className="space-y-8">
@@ -32,20 +32,20 @@ const OPDService = () => {
                 <div
                   className={`transition-all duration-200 ${
                     selectedTab === tab
-                      ? "border-b-4 py-2 border-blue-800 h-full px-4 text-gray-800"
+                      ? "border-b-4 primaryBorder bg-gray-200 h-full rounded-lg w-full py-3 px-4 text-gray-800"
                       : " px-4 py-2 text-gray-500"
                   }`}
                 >
                   {" "}
-                  {tab === "old"
-                    ? "Search Old Patient"
-                    : "Add New Patient"}{" "}
+                  {tab === "new"
+                    ? "Add New Patient"
+                    : "Search Old Patient"}{" "}
                 </div>
               </div>
             ))}
           </div>
 
-          {selectedTab === "old" ? <OldPatientTab /> : <NewPatientTab />}
+          {selectedTab === "new" ? <NewPatientTab /> : <OldPatientTab />}
         </div>
       </div>
     </MainLayout>

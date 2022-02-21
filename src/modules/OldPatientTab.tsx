@@ -13,9 +13,12 @@ export const OldPatientTab = () => {
   const [id, setId] = useState("");
   const [number, setNumber] = useState("");
   const [data, setData] = useState<any>([]);
+  const [patients, setPatients] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
+
+  const display = [{}];
 
   const columns = [
     {
@@ -23,7 +26,7 @@ export const OldPatientTab = () => {
       dataIndex: "patient_id",
       key: "patient_id",
       render: (patient_id) => (
-        <span className="text-base bg-gray-600 px-3 py-1 text-white rounded-lg ">
+        <span className="text-base secondaryBgColor px-3 py-1 text-white rounded-lg ">
           {patient_id}
         </span>
       ),
@@ -57,7 +60,7 @@ export const OldPatientTab = () => {
       key: "service",
       render: (text) => (
         <Space size="middle">
-          <span className="text-base bg-gray-600 px-3 py-1 text-white rounded-lg ">
+          <span className="text-base secondaryBgColor px-3 py-1 text-white rounded-lg ">
             {text.toUpperCase()}
           </span>
         </Space>
@@ -69,7 +72,7 @@ export const OldPatientTab = () => {
       render: (text, record) => (
         <Space size="middle">
           <button
-            className="px-5 py-1 bg-blue-600 text-base text-white rounded-md"
+            className="px-5 py-1 primaryBgColor text-base text-white rounded-md"
             onClick={() =>
               router.push(
                 `/service/opd/start?name=${record.name}&id=${record.patient_id}`
@@ -133,14 +136,9 @@ export const OldPatientTab = () => {
         </div>
       ) : data.length === 0 ? (
         <div className="pt-12 ml-32 space-y-8 flex flex-col justify-center">
-          <div className="relative w-1/3 h-[30vh]">
-            <Image
-              src="/empty.svg"
-              alt="empty "
-              layout="fill"
-              objectFit="contain"
-            />
-          </div>
+          {/* <div className="relative w-1/3 h-[30vh]"> */}
+
+          {/* </div> */}
           <div className="text-blue-500 font-semibold text-xl tracking-wider">
             {error}
           </div>
@@ -152,6 +150,13 @@ export const OldPatientTab = () => {
           className="shadow-E500 rounded-lg overflow-hidden"
         />
       )}
+      <div>
+        <Table
+          columns={columns}
+          dataSource={data}
+          className="shadow-E500 rounded-lg overflow-hidden"
+        />
+      </div>
     </div>
   );
 };

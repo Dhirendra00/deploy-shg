@@ -32,7 +32,7 @@ export const DoctorLayout: React.FC<MainLayoutProps> = ({ children }) => {
       ),
     },
     {
-      name: "Patients",
+      name: "Appointment",
       route: "/doctor/patients",
       icon: (
         <UserTag
@@ -86,7 +86,7 @@ export const DoctorLayout: React.FC<MainLayoutProps> = ({ children }) => {
               <div className="text-lg font-medium text-gray-500">
                 {data.payload && data.payload.email}
               </div>
-              <div className="text-base font-medium text-white bg-blue-700 px-2 py-1 rounded-lg">
+              <div className="text-base font-medium text-white primaryBgColor px-2 py-1 rounded-lg">
                 {data.payload && data.payload.userType}
               </div>
             </div>
@@ -101,7 +101,7 @@ export const DoctorLayout: React.FC<MainLayoutProps> = ({ children }) => {
                   <li
                     className={`${
                       router.pathname === item.route
-                        ? "bg-gray-800 text-white hover:bg-gray-800 hover:text-white py-3"
+                        ? "primaryBgColor text-white hover:bg-sky-600 hover:text-white py-3"
                         : " text-gray-700 hover:text-gray-900 py-3  hover:bg-gray-100"
                     }   cursor-pointer flex items-center text-xl font-medium px-4 rounded-xl   w-full space-x-4`}
                   >

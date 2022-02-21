@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { Button, GrayButton } from "@/components/Button";
 import { Edit } from "iconsax-react";
 import { UnitInput, TextAreaInput, Input } from "@/components/Input";
+import { Details } from "@/components/Patient/detail";
 import { Modal } from "@/components/Modal/useModal";
 import withAuth from "@/shared/withAuth";
 import Image from "next/image";
@@ -18,7 +19,7 @@ import {
 import { alert } from "@/components/Alert";
 import React, { useState, useEffect } from "react";
 import { Spin } from "antd";
-import Badge from "@/components/Badge";
+import { Badge, DoctorBadge } from "@/components/Badge";
 
 const PatientDetailTab = () => {
   const [patient, setPatient] = useState<any>(null);
@@ -48,331 +49,24 @@ const PatientDetailTab = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div>
-          <div className="p-2 flex justify-evenly">
-            <div className="border-2 border-purple-500  p-5  w-3/12 bg-white shadow-E400 rounded-md ">
-              <h1 className="mb-2 text-xl">Personal Details</h1>
-              <table className="border-collapse border border-gray-300 table-auto w-full text-left">
-                <tr>
-                  <th className="border border-gray-200 p-2">Name</th>
-                  <td className="border border-gray-200 text-xl p-2">
-                    {patient && patient.name}
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border border-gray-200 p-2">Gender</th>
-                  <td className="border border-gray-200 text-xl p-2 capitalize">
-                    {patient && patient.gender}
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border border-gray-200 p-2">Age</th>
-                  <td className="border border-gray-200 text-xl p-2">
-                    {patient && patient.age}
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border border-gray-200 p-2">Caste</th>
-                  <td className="border border-gray-200 text-xl p-2">
-                    {patient && patient.caste}
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border border-gray-200 p-2">District</th>
-                  <td className="border border-gray-200 text-xl p-2">
-                    {patient && patient.district}
-                  </td>
-                </tr>
-                <tr>
-                  <th className="border border-gray-200 p-2">Address</th>
-                  <td className="border border-gray-200 text-base p-2 ">
-                    {`${patient && patient.province}, ${
-                      patient && patient.district
-                    }, ${patient && patient.palika}`}
-                  </td>
-                </tr>
-
-                <tr>
-                  <th className="border border-gray-200 p-2">Service</th>
-                  <td className="border border-gray-200 text-xl p-2">
-                    {
-                      <Badge
-                        title={patient && patient.service}
-                        color="bg-blue-500"
-                      />
-                    }
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <div className="shadow-E400 w-8/12 bg-white p-3 rounded-md border-2 border-purple-500 flex justify-center items-center">
-              <h1 className="text-2xl">More details here soon..</h1>
-            </div>
-          </div>
-          <hr className="mt-3 mb-3" />
-          <h1 className="text-2xl">Medical Details</h1>
-          <div className="flex flex-col">
-            <div className="flex">
-              <Accordion>
-                <Accordion.Button>Vitals</Accordion.Button>
-                <Accordion.Panel>
-                  <div className="relative">
-                    <Modal>
-                      <Modal.Button type="open">
-                        <div className="w-8 h-8 rounded-full border-2 border-gray-400  flex justify-center items-center text-xl absolute left-96 hover:cursor-pointer">
-                          <Edit />
-                        </div>
-                      </Modal.Button>
-                      <Modal.Content>{<VitalModalContent />}</Modal.Content>
-                    </Modal>
-
-                    {patient && patient.vitals === null ? (
-                      "No vitals recorded"
-                    ) : (
-                      <div className="px-6">
-                        <table className=" table-auto w-full text-left">
-                          <tr>
-                            <th className="border border-gray-200 p-2">
-                              Temperature
-                            </th>
-                            <td className="border border-gray-200 text-xl p-2  ">
-                              {patient && patient.vitals.temperature}&#176;F
-                            </td>
-                          </tr>
-                          <tr>
-                            <th className="border border-gray-200 p-2">
-                              Pulse
-                            </th>
-                            <td className="border border-gray-200 text-xl p-2">
-                              {patient && patient.vitals.pulse} BPM
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <th className="border border-gray-200 p-2">
-                              Respiratory Rate
-                            </th>
-                            <td className="border border-gray-200 text-xl p-2">
-                              {patient && patient.vitals.respiratory_rate}
-                              &#47;min
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <th className="border border-gray-200 p-2">
-                              BP Systolic
-                            </th>
-                            <td className="border border-gray-200 text-xl p-2">
-                              {patient && patient.vitals.bp_systolic}&#47;mmhg
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <th className="border border-gray-200 p-2">
-                              BP Diastolic
-                            </th>
-                            <td className="border border-gray-200 text-xl p-2">
-                              {patient && patient.vitals.bp_diastolic}&#47;mmhg
-                            </td>
-                          </tr>
-
-                          <tr>
-                            <th className="border border-gray-200 p-2">SPO2</th>
-                            <td className="border border-gray-200 text-xl p-2">
-                              {patient && patient.vitals.spo_2}%
-                            </td>
-                          </tr>
-                        </table>
-                      </div>
-                    )}
-                  </div>
-                </Accordion.Panel>
-              </Accordion>
-              <Accordion>
-                <Accordion.Button>Medical History</Accordion.Button>
-                <Accordion.Panel>
-                  <div className="relative">
-                    <Modal>
-                      <Modal.Button type="open">
-                        <div className="w-8 h-8 rounded-full border-2 border-gray-400  flex justify-center items-center text-xl absolute left-96 hover:cursor-pointer">
-                          <Edit />
-                        </div>
-                      </Modal.Button>
-                      <Modal.Content>{<HistoryModalContent />}</Modal.Content>
-                    </Modal>
-
-                    {patient && patient.history === null ? (
-                      "No history recorded"
-                    ) : (
-                      <div className=" w-11/12 space-y-2">
-                        <div className="rounded-md shadow-E300 px-3 py-2 border-2 border-purple-500">
-                          <h1 className="text-xl text-purple-500">
-                            Medical History
-                          </h1>
-                          {patient && patient.history.medical_history}
-                        </div>
-                        <div className="rounded-md shadow-E300 px-3 py-2 border-2 border-purple-500">
-                          <h1 className="text-xl text-purple-500">
-                            Surgical History
-                          </h1>
-                          {patient && patient.history.surgical_history}
-                        </div>
-                        <div className="rounded-md shadow-E300 px-3 py-2 border-2 border-purple-500">
-                          <h1 className="text-xl text-purple-500">
-                            Gye OBS History
-                          </h1>
-                          {patient && patient.history.gye_obs}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </Accordion.Panel>
-              </Accordion>
-              <Accordion>
-                <Accordion.Button>Chief Complients</Accordion.Button>
-                <Accordion.Panel>
-                  <div className="relative">
-                    <Modal>
-                      <Modal.Button type="open">
-                        <div className="w-8 h-8 rounded-full border-2 border-gray-400  flex justify-center items-center text-xl absolute left-96 hover:cursor-pointer">
-                          <Edit />
-                        </div>
-                      </Modal.Button>
-                      <Modal.Content>{<ChiefComplaintModal />}</Modal.Content>
-                    </Modal>
-
-                    <div className=" w-11/12 space-y-2">
-                      No chief complients recorded yet
-                    </div>
-                  </div>
-                </Accordion.Panel>
-              </Accordion>
-            </div>
-
-            <div className="flex w-8/12">
-              <Accordion>
-                <Accordion.Button>Refered Tests</Accordion.Button>
-                <Accordion.Panel>
-                  {patient && patient.tests === null ? (
-                    "No refered tests yet"
-                  ) : (
-                    <div className="border-2 border-purple-500 rounded-md p-2 text-base">
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Fugit, excepturi.
-                    </div>
-                  )}
-                </Accordion.Panel>
-              </Accordion>
-
-              <Accordion>
-                <Accordion.Button>Physical Examination</Accordion.Button>
-                <Accordion.Panel>
-                  <div className="relative">
-                    <Modal>
-                      <Modal.Button type="open">
-                        <div className="w-8 h-8 rounded-full border-2 border-gray-400  flex justify-center items-center text-xl absolute left-96 hover:cursor-pointer">
-                          <Edit />
-                        </div>
-                      </Modal.Button>
-                      <Modal.Content>{<ExaminationFormModal />}</Modal.Content>
-                    </Modal>
-
-                    <div className=" w-11/12 space-y-2">
-                      <div className="rounded-md shadow-E300 px-3 py-2 border-2 border-purple-500">
-                        <h1 className="text-xl text-purple-500">
-                          General Condition
-                        </h1>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Fuga delectus error rem omnis reiciendis tenetur odit at
-                        amet laboriosam voluptas minima veritatis alias ipsa
-                        facilis recusandae provident illo .
-                      </div>
-                      <div className="rounded-md shadow-E300 px-3 py-2 border-2 border-purple-500">
-                        <h1 className="text-xl text-purple-500">Chest</h1>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit. Repellat, explicabo?
-                      </div>
-                      <div className="rounded-md shadow-E300 px-3 py-2 border-2 border-purple-500">
-                        <h1 className="text-xl text-purple-500">CVS</h1>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Fuga delectus error rem omnis reiciendis tenetur odit at
-                        amet laboriosam voluptas minima veritatis alias ipsa
-                        facilis
-                      </div>
-                      <div className="rounded-md shadow-E300 px-3 py-2 border-2 border-purple-500">
-                        <h1 className="text-xl text-purple-500">CNS</h1>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Fuga delectus error rem omnis reiciendis tenetur odit at
-                        amet
-                      </div>
-                      <div className="rounded-md shadow-E300 px-3 py-2 border-2 border-purple-500">
-                        <h1 className="text-xl text-purple-500">Perabominal</h1>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Fuga delectus error rem omnis reiciendis tenetur odit at
-                        amet
-                      </div>
-                      <div className="rounded-md shadow-E300 px-3 py-2 border-2 border-purple-500">
-                        <h1 className="text-xl text-purple-500">
-                          Local Examination
-                        </h1>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Fuga delectus error rem omnis reiciendis tenetur odit at
-                        amet
-                      </div>
-                    </div>
-                  </div>
-                </Accordion.Panel>
-              </Accordion>
-            </div>
-          </div>
-
-          <div className="flex mt-11 justify-between">
-            <div className="w-5/12 bg-white p-6 border-2 border-purple-500 rounded-md shadow-E400">
-              <h1 className="text-3xl text-semibold text-purple-500 m-0">
-                Test Results
-              </h1>
-              <hr className="mb-6 mt-2 border-2" />
-              {patient && patient.tests === null ? (
-                "No tests record uploaded yet"
-              ) : (
-                <div className=" grid grid-cols-3 gap-4">
-                  <div className="border-2 border-gray-500  rounded-md object-cover h-52 w-40 shadow-E500 p-2 hover:cursor-pointer">
-                    <Image
-                      src="/test.jpg"
-                      alt="test"
-                      width={150}
-                      height={200}
-                    />
-                  </div>
-                  <div className="border-2 border-gray-500  rounded-md object-cover h-52 w-40 shadow-E500 p-2 hover:cursor-pointer">
-                    <Image
-                      src="/test.jpg"
-                      alt="test"
-                      width={150}
-                      height={200}
-                    />
-                  </div>
-                  <div className="border-2 border-gray-500  rounded-md object-cover h-52 w-40 shadow-E500 p-2 hover:cursor-pointer">
-                    <Image
-                      src="/test.jpg"
-                      alt="test"
-                      width={150}
-                      height={200}
-                    />
-                  </div>
-                  <div className="border-2 border-gray-500  rounded-md object-cover h-52 w-40 shadow-E500 p-2 hover:cursor-pointer">
-                    <Image
-                      src="/test.jpg"
-                      alt="test"
-                      width={150}
-                      height={200}
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+        <Details
+          patient_id={patient && patient.patient_id}
+          name={patient && patient.name}
+          gender={patient && patient.gender}
+          age={patient && patient.age}
+          caste={patient && patient.caste}
+          district={patient && patient.district}
+          service={patient && patient.service}
+          temperature={patient && patient.vitals.temperature}
+          pulse={patient && patient.vitals.pulse}
+          respiratoryRate={patient && patient.vitals.respiratory_rate}
+          bpSystolic={patient && patient.vitals.bp_systolic}
+          bpDiastolic={patient && patient.vitals.bp_diastolic}
+          spo={patient && patient.vitals.spo_2}
+          medicalHistory={patient && patient.history.medical_history}
+          surgicalHistory={patient && patient.history.surgical_history}
+          gyeObs={patient && patient.history.gye_obs}
+        ></Details>
       )}
     </>
   );

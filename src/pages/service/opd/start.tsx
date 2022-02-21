@@ -7,7 +7,8 @@ import { Field, Form, Formik } from "formik";
 import { Input, TextAreaInput, UnitInput } from "@/components/Input";
 import { Button, GrayButton } from "@/components/Button";
 import React, { useState } from "react";
-import { Table, Space } from "antd";
+import Link from "next/link";
+import { CallCalling, Eye } from "iconsax-react";
 
 import {
   addPatientHistory,
@@ -106,16 +107,27 @@ const StartOPD = () => {
           </div>
         </div>
         <hr />
-        <button
-          className=" text-2xl bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
-          onClick={() =>
-            router.push(
-              `/service/opd/videocall?name=${router.query.name}&id=${router.query.id}`
-            )
-          }
-        >
-          Initiate Call
-        </button>
+        <div className="space-y-4">
+          <button
+            className="primaryBgColor hover:bg-sky-600 flex text-white py-1 px-3 text-base mr-2 rounded-sm"
+            onClick={() =>
+              router.push(
+                `/service/opd/videocall?name=${router.query.name}&id=${router.query.id}`
+              )
+            }
+          >
+            <h2 className="text-white text-2xl pt-3 font-semibold mr-3 p-2">
+              {" "}
+              Initiate Call
+            </h2>
+            <CallCalling
+              size={40}
+              variant="Broken"
+              color="white"
+              className="text-center p-2 pt-3"
+            />
+          </button>
+        </div>
       </div>
     </MainLayout>
   );

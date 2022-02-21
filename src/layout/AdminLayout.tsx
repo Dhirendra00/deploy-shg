@@ -2,15 +2,7 @@ import { useAuthStore } from "@/modules/auth/useAuthStore";
 import Image from "next/image";
 // eslint-disable-next-line camelcase
 import jwt_decode from "jwt-decode";
-import {
-  Briefcase,
-  ChemicalGlass,
-  Drop,
-  Health,
-  Home3,
-  Lovely,
-  Radio,
-} from "iconsax-react";
+import { Building, Home3, UserTag } from "iconsax-react";
 import { useRouter } from "next/router";
 import { SignOut } from "phosphor-react";
 import Link from "next/link";
@@ -21,7 +13,7 @@ type MainLayoutProps = {
   children: React.ReactNode;
 };
 
-export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+export const AdminLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const access = useAuthStore().accessToken;
   const data = access && jwt_decode<any>(access);
 
@@ -29,8 +21,8 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
   const SidebarNavItems = [
     {
-      name: "Dashboard",
-      route: "/dashboard",
+      name: "Home",
+      route: "/doctor",
       icon: (
         <Home3
           size={28}
@@ -40,68 +32,24 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       ),
     },
     {
-      name: "OPD",
-      route: "/service/opd",
+      name: "Patients",
+      route: "/doctor/patients",
       icon: (
-        <Health
+        <UserTag
+          size={28}
+          variant="Broken"
+          color={router.pathname === "/dashboard" ? "white" : "gray"}
+        />
+      ),
+    },
+    {
+      name: "Health Facility111",
+      route: "/doctor/health-facility",
+      icon: (
+        <Building
           size={28}
           variant="Broken"
           color={router.pathname === "/service/opd" ? "white" : "gray"}
-        />
-      ),
-    },
-    {
-      name: "Maternal Health",
-      route: "/service/maternal",
-      icon: (
-        <Lovely
-          size={28}
-          variant="Broken"
-          color={router.pathname === "/service/maternal" ? "white" : "gray"}
-        />
-      ),
-    },
-    {
-      name: "Lab Test",
-      route: "/service/lab",
-      icon: (
-        <ChemicalGlass
-          size={28}
-          variant="Broken"
-          color={router.pathname === "/service/lab" ? "white" : "gray"}
-        />
-      ),
-    },
-    {
-      name: "Immunization",
-      route: "/service/immunization",
-      icon: (
-        <Drop
-          size={28}
-          variant="Broken"
-          color={router.pathname === "/service/immunization" ? "white" : "gray"}
-        />
-      ),
-    },
-    {
-      name: "Radiology",
-      route: "/service/radiology",
-      icon: (
-        <Radio
-          size={28}
-          variant="Broken"
-          color={router.pathname === "/service/radiology" ? "white" : "gray"}
-        />
-      ),
-    },
-    {
-      name: "Pharmacy",
-      route: "/service/pharmacy",
-      icon: (
-        <Briefcase
-          size={28}
-          variant="Broken"
-          color={router.pathname === "/service/pharmacy" ? "white" : "gray"}
         />
       ),
     },
@@ -123,7 +71,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   };
 
   return (
-    <div>
+    <div suppressHydrationWarning={true}>
       <div className="flex w-full min-h-screen" suppressHydrationWarning={true}>
         <div className="fixed w-1/6 bg-white h-screen shadow-E500 z-20 flex items-start py-16 flex-col space-y-12">
           <div className="self-center flex flex-col items-center space-y-4">
@@ -145,17 +93,17 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           </div>
 
           {/** SIDEBAR NAV */}
-          <nav className="w-full">
+          <nav className="w-full overflow-y-auto">
             <hr className=" border-gray-100 h-0.5 mb-6" />
             <ul className="w-full px-4 space-y-1">
               {SidebarNavItems.map((item) => (
                 <Link href={item.route} key={item.name} passHref>
                   <li
                     className={`${
-                      router.pathname.includes(item.route)
-                        ? "primaryBgColor text-white hover:bg-gray-800 hover:text-white py-3"
+                      router.pathname === item.route
+                        ? "bg-gray-800 text-white hover:bg-gray-800 hover:text-white py-3"
                         : " text-gray-700 hover:text-gray-900 py-3  hover:bg-gray-100"
-                    }   cursor-pointer flex items-center text-xl font-medium px-4 rounded-xl  w-full space-x-4`}
+                    }   cursor-pointer flex items-center text-xl font-medium px-4 rounded-xl   w-full space-x-4`}
                   >
                     <span>{item.icon}</span>
                     <span> {item.name}</span>
@@ -179,7 +127,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
             </div>
           </div>
         </div>
-        <div className="w-5/6 ml-[16.67%] bg-gray-50 h-screen">
+        <div className="w-5/6 ml-[16.67%] bg-gray-50 h-screen overflow-y-auto">
           <div className="w-full bg-white shadow-md pl-5">
             <Image src="/logo.png" alt="logo" width={250} height={100} />
           </div>

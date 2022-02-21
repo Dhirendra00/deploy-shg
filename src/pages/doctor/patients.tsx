@@ -111,9 +111,7 @@ const PatientPage: NextPage = () => {
                     <div className="space-y-4 mb-4">
                       <div className="flex space-x-5 z-[10]">
                         <Select name="service" data={service} />
-
                         <Select name="province" data={province} />
-
                         <Select name="district" data={district()} />
                         <Select name="palika" data={palikas} />
                       </div>
@@ -137,17 +135,16 @@ const PatientPage: NextPage = () => {
               <h2 className="text-lg text-gray-600"> Active Patients</h2>
               <div className="border-2 px-2 py-2 bg-gray-50 grid grid-cols-4 gap-2">
                 {patients &&
-                  patients.map((patient) =>
-                    patient.palika === "Badimalika Municipality" ? (
-                      <Patient
-                        key={patient.id}
-                        name={patient.name}
-                        service={patient.service}
-                        status={true}
-                        id={patient.patient_id}
-                      />
-                    ) : null
-                  )}
+                  patients.map((patient) => (
+                    <Patient
+                      key={patient.id}
+                      name={patient.name}
+                      gender={patient.gender}
+                      service={patient.Service}
+                      status={true}
+                      id={patient.patient_id}
+                    />
+                  ))}
               </div>
             </div>
           )}

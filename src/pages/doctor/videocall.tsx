@@ -62,16 +62,16 @@ function Videocall() {
               {!callInProgress && (
                 <article className="body">
                   <form onSubmit={onSubmit}>
-                    <section className="formField p-3">
-                      {/* <input
+                    <section className="formField">
+                      <input
                         type="text"
                         placeholder="Your name"
                         value={displayName}
                         onChange={(e) => setDisplayName(e.target.value)}
-                      /> */}
+                      />
                       <input
                         type="text"
-                        placeholder="Doctor's Name"
+                        placeholder="Room's name"
                         value={roomName}
                         onChange={(e) => setRoomName(e.target.value)}
                       />
